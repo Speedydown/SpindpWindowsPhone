@@ -10,6 +10,7 @@ using Microsoft.Phone.Shell;
 using System.Threading.Tasks;
 using System.Threading;
 using SpinDPWP.Controls;
+using System.ComponentModel;
 
 namespace SpinDPWP
 {
@@ -19,16 +20,31 @@ namespace SpinDPWP
         private Semaphore StreamSemaphore = new Semaphore(1,1);
         private Semaphore JoystickSemaphore = new Semaphore(1, 1);
 
+        private bool _SwimMode = false;
+        public bool SwimMode
+        {
+            get
+            {
+                return _SwimMode;
+            }
+            set
+            {
+                _SwimMode = value;
+                OnPropertyChanged("SwimMode");
+            }
+        }
+
         public ControlRoom()
         {
             InitializeComponent();
-           // this.Joystick.StartJoystick();
+            this.Joystick.StartJoystick();
             this.Init();
         }
 
         private async Task Init()
         {
-            await Task.Run(() => this.Stream());
+           // await Task.Run(() => this.Stream());
+            await Task.Run(() => this.Battery());
             await DataHandler.DH.ProcessCommand("move 10");
             //await DataHandler.DH.ProcessCommand("slen 145");
             await DataHandler.DH.ProcessCommand("slen 90");
@@ -68,42 +84,59 @@ namespace SpinDPWP
             }
 
             //Set speed
-            int Speed = (Convert.ToInt32(Coordinates.Speed) / 51) + 1;
+            int Speed = (Convert.ToInt32(Coordinates.Speed) / 51);
             await DataHandler.DH.ProcessCommand("smul " + Speed);
 
             //Direction
             int Direction = Convert.ToInt32(Coordinates.Direction);
             if (Direction > 337 || Direction < 23)
             {
-                await DataHandler.DH.ProcessCommand("move 25");
+                if (this.SwimMode)
+                {
+                    await DataHandler.DH.ProcessCommand("move 25");
+                    await DataHandler.DH.ProcessCommand("smul " + 5);
+                }
+                else
+                {
+                    await DataHandler.DH.ProcessCommand("move 11");
+                    await DataHandler.DH.ProcessCommand("smul " + Speed);
+                    
+                }
             }
             else if (Direction > 22 && Direction < 70)
             {
                 await DataHandler.DH.ProcessCommand("move 12");
+                await DataHandler.DH.ProcessCommand("smul " + Speed);
             }
             else if (Direction > 69 && Direction < 116)
             {
                 await DataHandler.DH.ProcessCommand("move 13");
+                await DataHandler.DH.ProcessCommand("smul " + Speed + 1);
             }
             else if (Direction > 115 && Direction < 163)
             {
                 await DataHandler.DH.ProcessCommand("move 14");
+                await DataHandler.DH.ProcessCommand("smul " + Speed);
             }
             else if (Direction > 162 && Direction < 210)
             {
                 await DataHandler.DH.ProcessCommand("move 15");
+                await DataHandler.DH.ProcessCommand("smul " + Speed);
             }
             else if (Direction > 209 && Direction < 255)
             {
                 await DataHandler.DH.ProcessCommand("move 16");
+                await DataHandler.DH.ProcessCommand("smul " + Speed);
             }
             else if (Direction > 254 && Direction < 302)
             {
                 await DataHandler.DH.ProcessCommand("move 17");
+                await DataHandler.DH.ProcessCommand("smul " + Speed + 1);
             }
             else if (Direction > 301 && Direction < 349)
             {
                 await DataHandler.DH.ProcessCommand("move 18");
+                await DataHandler.DH.ProcessCommand("smul " + Speed);
             }
             else
             {
@@ -111,6 +144,22 @@ namespace SpinDPWP
             }
 
             this.JoystickSemaphore.Release();
+        }
+
+        private async Task Battery()
+        {
+            while (true)
+            {
+                try
+                {
+                    this.BatteryLevel.Text = await BatteryController.GetBatteryLevel();
+                    Thread.Sleep(3000);
+                }
+                catch (Exception)
+                {
+
+                }
+            }
         }
 
         private void Joystick_Stop(object sender, EventArgs e)
@@ -133,6 +182,40 @@ namespace SpinDPWP
             this.JoystickSemaphore.WaitOne();
             await DataHandler.DH.ProcessCommand("move 10");
             this.JoystickSemaphore.Release();
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        void OnPropertyChanged(string propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+
+            if (handler != null)
+            {
+                if (propertyName == "Image")
+                {
+                    Semaphore tempSemaphore = new Semaphore(1, 1);
+
+                    Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+                    {
+                        tempSemaphore.WaitOne();
+                        handler(this, new PropertyChangedEventArgs(propertyName));
+                        tempSemaphore.Release();
+                    });
+
+                    tempSemaphore.WaitOne();
+                    tempSemaphore.Release();
+                }
+                else
+                {
+                    handler(this, new PropertyChangedEventArgs(propertyName));
+                }
+
+            }
         }
 
     }
