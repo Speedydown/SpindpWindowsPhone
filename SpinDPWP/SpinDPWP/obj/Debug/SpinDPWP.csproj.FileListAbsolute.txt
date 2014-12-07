@@ -17,3 +17,5 @@ C:\Users\Teake\Documents\GitHub\SpindpWindowsPhone\SpinDPWP\SpinDPWP\obj\Debug\S
 C:\Users\Teake\Documents\GitHub\SpindpWindowsPhone\SpinDPWP\SpinDPWP\obj\Debug\SpinDPWP.dll
 C:\Users\Teake\Documents\GitHub\SpindpWindowsPhone\SpinDPWP\SpinDPWP\obj\Debug\SpinDPWP.pdb
 C:\Users\Teake\Documents\GitHub\SpindpWindowsPhone\SpinDPWP\SpinDPWP\obj\Debug\XapCacheFile.xml
+C:\Users\Teake\Documents\GitHub\SpindpWindowsPhone\SpinDPWP\SpinDPWP\obj\Debug\ControlRoom.g.cs
+C:\Users\Teake\Documents\GitHub\SpindpWindowsPhone\SpinDPWP\SpinDPWP\obj\Debug\Assets\Controls\Joystick.g.cs
