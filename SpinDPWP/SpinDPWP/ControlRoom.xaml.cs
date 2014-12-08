@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using SpinDPWP.Controls;
 using System.ComponentModel;
+using Windows.UI.Core;
 
 namespace SpinDPWP
 {
@@ -19,20 +20,7 @@ namespace SpinDPWP
         private bool RunStream = true;
         private Semaphore StreamSemaphore = new Semaphore(1,1);
         private Semaphore JoystickSemaphore = new Semaphore(1, 1);
-
-        private bool _SwimMode = false;
-        public bool SwimMode
-        {
-            get
-            {
-                return _SwimMode;
-            }
-            set
-            {
-                _SwimMode = value;
-                OnPropertyChanged("SwimMode");
-            }
-        }
+        private DateTime LastBatteryRequest;
 
         public ControlRoom()
         {
@@ -47,8 +35,9 @@ namespace SpinDPWP
             await Task.Run(() => this.Battery());
             await DataHandler.DH.ProcessCommand("move 10");
             //await DataHandler.DH.ProcessCommand("slen 145");
-            await DataHandler.DH.ProcessCommand("slen 90");
-            await DataHandler.DH.ProcessCommand("shgt 55");
+            
+            string output1 = await DataHandler.DH.ProcessCommand("shgt 55");
+            string output2 = await DataHandler.DH.ProcessCommand("slen 125");
         }
 
         public async Task Stream()
@@ -78,7 +67,7 @@ namespace SpinDPWP
 
         private async Task Move(MyCoordinates Coordinates)
         {
-            if (!this.JoystickSemaphore.WaitOne(500))
+            if (!this.JoystickSemaphore.WaitOne(1500))
             {
                 return;
             }
@@ -91,7 +80,19 @@ namespace SpinDPWP
             int Direction = Convert.ToInt32(Coordinates.Direction);
             if (Direction > 337 || Direction < 23)
             {
-                if (this.SwimMode)
+                Semaphore DisPatchSemaphore = new Semaphore(1, 1);
+                DisPatchSemaphore.WaitOne();
+                bool Turbo = false;
+                Deployment.Current.Dispatcher.BeginInvoke(() =>
+                {
+                    Turbo = Convert.ToBoolean(this.TurboCheckbox.IsChecked);
+                    DisPatchSemaphore.Release();
+                });
+
+                DisPatchSemaphore.WaitOne();
+                DisPatchSemaphore.Release();
+
+                if (Turbo)
                 {
                     await DataHandler.DH.ProcessCommand("move 25");
                     await DataHandler.DH.ProcessCommand("smul " + 5);
@@ -150,14 +151,23 @@ namespace SpinDPWP
         {
             while (true)
             {
-                try
+                if (DateTime.Now.Subtract(LastBatteryRequest).Minutes > 2)
                 {
-                    this.BatteryLevel.Text = await BatteryController.GetBatteryLevel();
-                    Thread.Sleep(3000);
-                }
-                catch (Exception)
-                {
+                    LastBatteryRequest = DateTime.Now;
+                    string BatteryLevel = await BatteryController.GetBatteryLevel();
 
+                    try
+                    {
+                        Deployment.Current.Dispatcher.BeginInvoke(() =>
+                        {
+                            this.BatteryLevel.Text = BatteryLevel;
+                        });
+
+                    }
+                    catch (Exception)
+                    {
+
+                    }
                 }
             }
         }
@@ -200,7 +210,7 @@ namespace SpinDPWP
                 {
                     Semaphore tempSemaphore = new Semaphore(1, 1);
 
-                    Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+                    Deployment.Current.Dispatcher.BeginInvoke(() =>
                     {
                         tempSemaphore.WaitOne();
                         handler(this, new PropertyChangedEventArgs(propertyName));

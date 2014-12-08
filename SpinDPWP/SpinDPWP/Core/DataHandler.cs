@@ -93,7 +93,14 @@ namespace SpinDPWP
                 }
             }
 
-            this.DataSemaphore.Release();
+            try
+            {
+                this.DataSemaphore.Release();
+            }
+            catch
+            {
+
+            }
 
             if (retry)
             {
@@ -118,7 +125,21 @@ namespace SpinDPWP
             }
 
             //Handle Command
-            this.DataSemaphore.WaitOne();
+            bool TimedOut = !this.DataSemaphore.WaitOne(5000);
+
+            if (TimedOut)
+            {
+                try
+                {
+                    this.DataSemaphore.Release();
+                }
+                catch
+                {
+
+                }
+                Disconnect();
+                return await this.ProcessCommand(Command);
+            }
 
             try
             {
@@ -139,7 +160,7 @@ namespace SpinDPWP
 
                 while (!Output.Contains("<EOF>"))
                 {
-                    uint s = await  dr.LoadAsync(512);
+                    uint s = await dr.LoadAsync(512);
 
 
                     Output += dr.ReadString(s);
@@ -153,7 +174,30 @@ namespace SpinDPWP
             }
             catch (ObjectDisposedException)
             {
-                this.DataSemaphore.Release();
+                try
+                {
+                    this.DataSemaphore.Release();
+                }
+                catch
+                {
+
+                }
+
+                this.Disconnect();
+                retry = true;
+                this.DataSemaphore.WaitOne();
+            }
+            catch (InvalidOperationException)
+            {
+                try
+                {
+                    this.DataSemaphore.Release();
+                }
+                catch
+                {
+
+                }
+
                 this.Disconnect();
                 retry = true;
                 this.DataSemaphore.WaitOne();
@@ -163,7 +207,14 @@ namespace SpinDPWP
 
             }
 
-            this.DataSemaphore.Release();
+            try
+            {
+                this.DataSemaphore.Release();
+            }
+            catch
+            {
+
+            }
 
             if (Output.Contains("<EOF>"))
             {
@@ -176,7 +227,7 @@ namespace SpinDPWP
             }
 
             return Output;
-            
+
         }
 
         private void Disconnect()
@@ -193,7 +244,14 @@ namespace SpinDPWP
 
             }
 
-            this.DataSemaphore.Release();
+            try
+            {
+                this.DataSemaphore.Release();
+            }
+            catch
+            {
+
+            }
         }
     }
 }

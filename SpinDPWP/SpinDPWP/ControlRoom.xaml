@@ -26,7 +26,7 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Image x:Name="CameraImage" Stretch="Fill" VerticalAlignment="Top" Grid.Row="0" Grid.RowSpan="3" Grid.ColumnSpan="2"  IsHitTestVisible="False" />
-        <CheckBox Checked="{Binding SwimMode}" Grid.Row="0" Content="Turbo" />
+        <CheckBox x:Name="TurboCheckbox" Grid.Row="0" Content="Turbo" />
         <TextBlock x:Name="BatteryLevel" Grid.Row="0" Grid.Column="1" Text="0%" TextAlignment="Right" Margin="0,15,10,0" FontSize="30" />
         <controls:Joystick x:Name="Joystick" NewCoordinates="Joystick_NewCoordinates" Stop="Joystick_Stop" Width="400" Height="400" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" ManipulationCompleted="Joystick_ManipulationCompleted" Grid.ColumnSpan="2" Margin="0,0,0,25" />
         
