@@ -1,0 +1,16 @@
+ExtractRGBchannels img r g b Int16Image
+Threshold r 140 255
+Threshold g 50 255
+Threshold b 140 255
+
+Subtract r g
+Subtract r b
+Threshold r 1 255
+
+LabelBlobs r EightConnected
+
+//RemoveLabels r Orientation -1.1 1.1 UseX &$baMod
+RemoveLabels r Area 0 2000 UseX &$baMod
+//RemoveLabels r EllipsFit 0.0 0.7 UseX &$baMod
+
+return r

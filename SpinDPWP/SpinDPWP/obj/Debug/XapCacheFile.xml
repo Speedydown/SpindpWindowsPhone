@@ -1,19 +1,13 @@
-﻿<xapCache source="C:\Users\Teake\Documents\GitHub\SpindpWindowsPhone\SpinDPWP\SpinDPWP\Bin\Debug\SpinDPWP_Debug_AnyCPU.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="07-12-2014 17:48:21">
-  <file source="C:\Users\Teake\Documents\GitHub\SpindpWindowsPhone\SpinDPWP\SpinDPWP\obj\Debug\SpinDPWP.dll" archivePath="SpinDPWP.dll" lastWriteTime="07-12-2014 17:48:21" />
-  <file source="C:\Users\Teake\Documents\GitHub\SpindpWindowsPhone\SpinDPWP\SpinDPWP\Assets\AlignmentGrid.png" archivePath="Assets\AlignmentGrid.png" lastWriteTime="07-12-2014 14:08:31" />
-  <file source="C:\Users\Teake\Documents\GitHub\SpindpWindowsPhone\SpinDPWP\SpinDPWP\Assets\Background.jpg" archivePath="Assets\Background.jpg" lastWriteTime="07-12-2014 14:08:31" />
-  <file source="C:\Users\Teake\Documents\GitHub\SpindpWindowsPhone\SpinDPWP\SpinDPWP\Assets\Tiles\FlipCycleTileLarge.png" archivePath="Assets\Tiles\FlipCycleTileLarge.png" lastWriteTime="07-12-2014 14:08:31" />
-  <file source="C:\Users\Teake\Documents\GitHub\SpindpWindowsPhone\SpinDPWP\SpinDPWP\Assets\Tiles\FlipCycleTileSmall.png" archivePath="Assets\Tiles\FlipCycleTileSmall.png" lastWriteTime="07-12-2014 14:08:31" />
-  <file source="C:\Users\Teake\Documents\GitHub\SpindpWindowsPhone\SpinDPWP\SpinDPWP\Assets\Tiles\IconicTileMediumLarge.png" archivePath="Assets\Tiles\IconicTileMediumLarge.png" lastWriteTime="07-12-2014 14:08:31" />
-  <file source="C:\Users\Teake\Documents\GitHub\SpindpWindowsPhone\SpinDPWP\SpinDPWP\Assets\Tiles\IconicTileSmall.png" archivePath="Assets\Tiles\IconicTileSmall.png" lastWriteTime="07-12-2014 14:08:31" />
-  <file source="C:\Users\Teake\Documents\GitHub\SpindpWindowsPhone\SpinDPWP\SpinDPWP\Bin\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="07-12-2014 16:21:19" />
-  <file source="C:\Users\Teake\Documents\GitHub\SpindpWindowsPhone\SpinDPWP\SpinDPWP\Bin\Debug\Assets\ApplicationIcon.png" archivePath="Assets\ApplicationIcon.png" lastWriteTime="07-12-2014 14:08:31" />
-  <file source="C:\Users\Teake\Documents\GitHub\SpindpWindowsPhone\SpinDPWP\SpinDPWP\Bin\Debug\Assets\Tiles\FlipCycleTileLarge.png" archivePath="Assets\Tiles\FlipCycleTileLarge.png" lastWriteTime="07-12-2014 14:08:31" />
-  <file source="C:\Users\Teake\Documents\GitHub\SpindpWindowsPhone\SpinDPWP\SpinDPWP\Bin\Debug\Assets\Tiles\FlipCycleTileMedium.png" archivePath="Assets\Tiles\FlipCycleTileMedium.png" lastWriteTime="07-12-2014 14:08:31" />
-  <file source="C:\Users\Teake\Documents\GitHub\SpindpWindowsPhone\SpinDPWP\SpinDPWP\Bin\Debug\Assets\Tiles\FlipCycleTileSmall.png" archivePath="Assets\Tiles\FlipCycleTileSmall.png" lastWriteTime="07-12-2014 14:08:31" />
-  <file source="C:\Users\Teake\Documents\GitHub\SpindpWindowsPhone\SpinDPWP\SpinDPWP\Bin\Debug\Assets\Tiles\IconicTileMediumLarge.png" archivePath="Assets\Tiles\IconicTileMediumLarge.png" lastWriteTime="07-12-2014 14:08:31" />
-  <file source="C:\Users\Teake\Documents\GitHub\SpindpWindowsPhone\SpinDPWP\SpinDPWP\Bin\Debug\Assets\Tiles\IconicTileSmall.png" archivePath="Assets\Tiles\IconicTileSmall.png" lastWriteTime="07-12-2014 14:08:31" />
-  <file source="C:\Users\Teake\Documents\GitHub\SpindpWindowsPhone\SpinDPWP\SpinDPWP\Assets\ApplicationIcon.png" archivePath="Assets\ApplicationIcon.png" lastWriteTime="07-12-2014 14:08:31" />
-  <file source="C:\Users\Teake\Documents\GitHub\SpindpWindowsPhone\SpinDPWP\SpinDPWP\Assets\Tiles\FlipCycleTileMedium.png" archivePath="Assets\Tiles\FlipCycleTileMedium.png" lastWriteTime="07-12-2014 14:08:31" />
-  <file source="C:\Users\Teake\Documents\GitHub\SpindpWindowsPhone\SpinDPWP\SpinDPWP\Bin\Debug\Properties\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="07-12-2014 14:08:31" />
+﻿<xapCache source="C:\Users\Teake\Documents\GitHub\SpindpWindowsPhone\SpinDPWP\SpinDPWP\Bin\Debug\SpinDPWP_Debug_AnyCPU.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="27-1-2015 18:49:32">
+  <file source="C:\Users\Teake\Documents\GitHub\SpindpWindowsPhone\SpinDPWP\SpinDPWP\obj\Debug\SpinDPWP.dll" archivePath="SpinDPWP.dll" lastWriteTime="27-1-2015 18:49:32" />
+  <file source="C:\Users\Teake\Documents\GitHub\SpindpWindowsPhone\SpinDPWP\SpinDPWP\Assets\AlignmentGrid.png" archivePath="Assets\AlignmentGrid.png" lastWriteTime="24-11-2014 17:28:48" />
+  <file source="C:\Users\Teake\Documents\GitHub\SpindpWindowsPhone\SpinDPWP\SpinDPWP\Assets\Background.jpg" archivePath="Assets\Background.jpg" lastWriteTime="3-12-2014 23:54:47" />
+  <file source="C:\Users\Teake\Documents\GitHub\SpindpWindowsPhone\SpinDPWP\SpinDPWP\Assets\Tiles\FlipCycleTileLarge.png" archivePath="Assets\Tiles\FlipCycleTileLarge.png" lastWriteTime="24-11-2014 17:28:48" />
+  <file source="C:\Users\Teake\Documents\GitHub\SpindpWindowsPhone\SpinDPWP\SpinDPWP\Assets\Tiles\FlipCycleTileSmall.png" archivePath="Assets\Tiles\FlipCycleTileSmall.png" lastWriteTime="24-11-2014 17:28:48" />
+  <file source="C:\Users\Teake\Documents\GitHub\SpindpWindowsPhone\SpinDPWP\SpinDPWP\Assets\Tiles\IconicTileMediumLarge.png" archivePath="Assets\Tiles\IconicTileMediumLarge.png" lastWriteTime="24-11-2014 17:28:48" />
+  <file source="C:\Users\Teake\Documents\GitHub\SpindpWindowsPhone\SpinDPWP\SpinDPWP\Assets\Tiles\IconicTileSmall.png" archivePath="Assets\Tiles\IconicTileSmall.png" lastWriteTime="24-11-2014 17:28:48" />
+  <file source="C:\Users\Teake\Documents\GitHub\SpindpWindowsPhone\SpinDPWP\SpinDPWP\Bin\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="1-12-2014 22:19:10" />
+  <file source="C:\Users\Teake\Documents\GitHub\SpindpWindowsPhone\SpinDPWP\SpinDPWP\Bin\Debug\Assets\ApplicationIcon.png" archivePath="Assets\ApplicationIcon.png" lastWriteTime="24-11-2014 17:28:48" />
+  <file source="C:\Users\Teake\Documents\GitHub\SpindpWindowsPhone\SpinDPWP\SpinDPWP\Bin\Debug\Assets\Tiles\FlipCycleTileMedium.png" archivePath="Assets\Tiles\FlipCycleTileMedium.png" lastWriteTime="24-11-2014 17:28:48" />
+  <file source="C:\Users\Teake\Documents\GitHub\SpindpWindowsPhone\SpinDPWP\SpinDPWP\Bin\Debug\Properties\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="1-12-2014 22:19:10" />
 </xapCache>

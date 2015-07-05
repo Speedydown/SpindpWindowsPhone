@@ -46,8 +46,6 @@ namespace SpinDPWP
         {
             bool retry = false;
 
-            this.DataSemaphore.WaitOne();
-
             if (this.isConnected())
             {
                 return;
@@ -89,41 +87,19 @@ namespace SpinDPWP
                 {
                     this.Socket = null;
                     retry = true;
-                    Thread.Sleep(500);
                 }
             }
 
-            try
-            {
-                this.DataSemaphore.Release();
-            }
-            catch
-            {
-
-            }
 
             if (retry)
             {
+                await Task.Delay(1000);
                 await this.Connect();
             }
         }
 
         public async Task<string> ProcessCommand(string Command, bool SecondAttempt = false)
         {
-            bool retry = false;
-            string Output = string.Empty;
-            //Connect
-            if (!this.isConnected())
-            {
-                if (SecondAttempt)
-                {
-                    return "Not connected";
-                }
-
-                await this.Connect();
-                return await this.ProcessCommand(Command, true);
-            }
-
             //Handle Command
             bool TimedOut = !this.DataSemaphore.WaitOne(5000);
 
@@ -137,9 +113,28 @@ namespace SpinDPWP
                 {
 
                 }
+
                 Disconnect();
                 return await this.ProcessCommand(Command);
             }
+
+
+            bool retry = false;
+            string Output = string.Empty;
+            //Connect
+            if (!this.isConnected())
+            {
+                if (SecondAttempt)
+                {
+                    return "Not connected";
+                }
+
+                await this.Connect();
+                this.DataSemaphore.Release();
+                return await this.ProcessCommand(Command, true);
+            }
+
+            
 
             try
             {
@@ -174,37 +169,22 @@ namespace SpinDPWP
             }
             catch (ObjectDisposedException)
             {
-                try
-                {
-                    this.DataSemaphore.Release();
-                }
-                catch
-                {
-
-                }
-
                 this.Disconnect();
                 retry = true;
-                this.DataSemaphore.WaitOne();
             }
             catch (InvalidOperationException)
             {
-                try
-                {
-                    this.DataSemaphore.Release();
-                }
-                catch
-                {
-
-                }
-
                 this.Disconnect();
                 retry = true;
-                this.DataSemaphore.WaitOne();
             }
             catch (Exception)
             {
 
+            }
+
+            if (Output.Contains("<EOF>"))
+            {
+                Output = Output.Substring(0, Output.Length - 5);
             }
 
             try
@@ -214,11 +194,6 @@ namespace SpinDPWP
             catch
             {
 
-            }
-
-            if (Output.Contains("<EOF>"))
-            {
-                Output = Output.Substring(0, Output.Length - 5);
             }
 
             if (retry)
@@ -232,23 +207,12 @@ namespace SpinDPWP
 
         private void Disconnect()
         {
-            this.DataSemaphore.WaitOne();
-
             try
             {
                 this.Socket.Dispose();
                 this.Socket = null;
             }
             catch (Exception)
-            {
-
-            }
-
-            try
-            {
-                this.DataSemaphore.Release();
-            }
-            catch
             {
 
             }

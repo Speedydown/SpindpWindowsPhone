@@ -1,0 +1,9 @@
+C:\Users\Teake\Documents\GitHub\IDP\VisionEngine\VisionEngine\VisionEngine\bin\Debug\VisionEngine.exe.config
+C:\Users\Teake\Documents\GitHub\IDP\VisionEngine\VisionEngine\VisionEngine\bin\Debug\VisionEngine.exe
+C:\Users\Teake\Documents\GitHub\IDP\VisionEngine\VisionEngine\VisionEngine\bin\Debug\VisionEngine.pdb
+C:\Users\Teake\Documents\GitHub\IDP\VisionEngine\VisionEngine\VisionEngine\obj\Debug\VisionEngine.csprojResolveAssemblyReference.cache
+C:\Users\Teake\Documents\GitHub\IDP\VisionEngine\VisionEngine\VisionEngine\obj\Debug\VisionEngine.Form1.resources
+C:\Users\Teake\Documents\GitHub\IDP\VisionEngine\VisionEngine\VisionEngine\obj\Debug\VisionEngine.Properties.Resources.resources
+C:\Users\Teake\Documents\GitHub\IDP\VisionEngine\VisionEngine\VisionEngine\obj\Debug\VisionEngine.csproj.GenerateResource.Cache
+C:\Users\Teake\Documents\GitHub\IDP\VisionEngine\VisionEngine\VisionEngine\obj\Debug\VisionEngine.exe
+C:\Users\Teake\Documents\GitHub\IDP\VisionEngine\VisionEngine\VisionEngine\obj\Debug\VisionEngine.pdb

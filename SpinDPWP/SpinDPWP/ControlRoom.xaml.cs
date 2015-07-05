@@ -35,9 +35,10 @@ namespace SpinDPWP
             await Task.Run(() => this.Battery());
             await DataHandler.DH.ProcessCommand("move 10");
             //await DataHandler.DH.ProcessCommand("slen 145");
-            
-            string output1 = await DataHandler.DH.ProcessCommand("shgt 55");
-            string output2 = await DataHandler.DH.ProcessCommand("slen 125");
+
+            string output1 = await DataHandler.DH.ProcessCommand("sdeg 30");
+            string output2 = await DataHandler.DH.ProcessCommand("shgt 55");
+            string output3 = await DataHandler.DH.ProcessCommand("slen 125");
         }
 
         public async Task Stream()
